@@ -1,0 +1,19 @@
+version: "3.7"
+services:
+  cron_job:
+    build: './RapidApiDataSourcePipeline'
+    environment:
+      - RAPID_API_KEY=${RAPID_API_KEY}
+      - S3_BUCKET=${S3_BUCKET}
+      - SNOWFLAKE_USER=${SNOWFLAKE_USER}
+      - SNOWFLAKE_PASS=${SNOWFLAKE_PASS}
+      - SNOWFLAKE_ACCOUNT=${SNOWFLAKE_ACCOUNT}
+      - AWS_ACCESS_KEY=${AWS_ACCESS_KEY}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
+      - SNS_TOPIC_ARN=${SNS_TOPIC_ARN}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "500k"
+        max-file: "1"
